@@ -6,8 +6,8 @@ class Creator:
 		self.cards = []
 		self.cardIndex = 0
 		self.CreateCards()
-		self.HitButton()
-		self.StandButton()		
+		self.StandButton()
+		self.HitButton()		
 
 	def HitButton(self):
 
@@ -22,14 +22,14 @@ class Creator:
 			self.cardIndex += 1
 			#label.config(text = lblStr)
 		btn = Button(self.root, text = 'HIT ME!', command = Hit)
-		btn.pack(side = LEFT, padx = 60, pady = 20)
+		btn.pack(side = BOTTOM, padx = 60, pady = 20)
 	#	return btn
 
 	def StandButton(self):
 		def Stand():
 			print('Standing with current hand')
 		btn = Button(self.root, text = 'STAND!', command = Stand)
-		btn.pack(side = LEFT, padx = 60, pady = 20)
+		btn.pack(side = BOTTOM, padx = 60, pady = 20)
 	#	return btn
 
 	def CreateCards(self):
