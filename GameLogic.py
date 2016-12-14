@@ -23,3 +23,5 @@ def GetRank():
 		return 'Jack'
 	else:
 		return str(rank)
+
+#def CheckHand():

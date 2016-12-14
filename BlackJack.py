@@ -6,15 +6,20 @@ window = Tk()
 
 window.title('WELCOME TO BLACKJACK')
 
-label = Label(window, text = 'Hello')
+ButtonCreator.create(window)
 
-label.pack(padx = 60, pady = 50)
+#label = Label(window, text = 'Hello')
+
+#label.pack(padx = 60, pady = 50)
+
+#buttonCreator.CreateCards(window)
 
 menu = MenuCreator.CreateMenu(window)
 
-ButtonCreator.HitButton(window, label)
+#ButtonCreator.HitButton(window, label)
+#buttonCreator.HitButton(window)
 
-ButtonCreator.StandButton(window)
+#buttonCreator.StandButton(window)
 
 window.config(menu = menu)
 
