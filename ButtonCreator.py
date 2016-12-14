@@ -12,11 +12,23 @@ class Creator:
 	def HitButton(self):
 
 		def Hit():
+			#use the IndexError Exception that is thrown
+			#if self.index == 5 do not deal new card and display error window
+			#else play scenario below
 			print('Dealer deals new card')
 			suit = GameLogic.GetSuit()
 			rank = GameLogic.GetRank()
 			lblStr = rank + ' of ' + suit
 			#Check created card with cards in hand
+			#	if the card is in the hand, while no matches found get a new card
+			isMatch = GameLogic.CheckHand(lblStr, self.cards)
+			while isMatch == 'match':
+				suit = GameLogic.GetSuit()
+				rank = GameLogic.GetRank()
+				lblStr = rank + ' of ' + suit
+				isMatch = GameLogic.CheckHand(lblStr, self.cards)
+
+			#	else add the new card in to the hand
 			print(lblStr)
 			self.cards[self.cardIndex].config(text = lblStr)
 			self.cardIndex += 1

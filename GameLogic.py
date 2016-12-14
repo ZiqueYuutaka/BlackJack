@@ -24,4 +24,9 @@ def GetRank():
 	else:
 		return str(rank)
 
-#def CheckHand():
+def CheckHand(card, cardList):
+
+	for ownedCard in cardList:
+		if card == ownedCard:
+			return 'match'
+
