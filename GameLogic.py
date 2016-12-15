@@ -1,7 +1,7 @@
 import random
 import tkinter.messagebox as box
 
-playerName = 0
+playerName = ''
 playerWins = 0
 playerLoses = 0
 

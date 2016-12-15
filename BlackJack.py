@@ -6,6 +6,8 @@ import GameLogic
 
 window = Tk()
 
+window2 = Tk()
+
 window.title('WELCOME TO BLACKJACK')
 
 cardManager = CardManager.createManager(window)

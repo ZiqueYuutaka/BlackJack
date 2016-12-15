@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox as msgbox
 #import ButtonCreator
 import GameLogic
 
@@ -21,11 +22,14 @@ def CreateMenu(window, cardManager, displayManager):
 	def Restart():
 		cardManager.NewCards()
 		GameLogic.cardTotal = 0
+		GameLogic.playerWins = 0
+		GameLogic.playerLoses = 0
 		GameLogic.funds = 1000.00
 		displayManager.SetLabel(str(GameLogic.funds))
 
 	def Stats():
 		print('Viewing Stats!')
+
 
 	def About():
 		print('About BlackJack')
