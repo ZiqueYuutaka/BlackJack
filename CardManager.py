@@ -17,7 +17,7 @@ class CardManager:
 			# set the ace card button to the empty slot
 
 			#else just add the card to the cards
-			self.cards[self.cardIndex].config(text = cardType)
+			self.cards[self.cardIndex].config(text = cardType, bg ='white')
 			# if card type is Ace, create an Ace card and set in to cards
 			self.cardIndex += 1
 		except IndexError:
@@ -27,6 +27,7 @@ class CardManager:
 		i = 0
 		while i < 5:
 			btn = Button(self.window, height=15, width=20)
+			btn.config(bg='black')
 			btn.pack(side = LEFT, padx = 10, pady = 10)
 			self.cards.append(btn)
 			i+=1
@@ -34,7 +35,7 @@ class CardManager:
 
 	def NewCards(self):
 		for card in self.cards:
-			card.config(text = '')
+			card.config(text = '', bg = 'black')
 		self.cardIndex = 0
 
 

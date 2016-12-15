@@ -1,5 +1,5 @@
 from tkinter import *
-import ButtonCreator
+#import ButtonCreator
 import GameLogic
 
 ####################TEST SECTION################
@@ -11,13 +11,18 @@ import GameLogic
 
 #menu = Menu(window) #create a menu bar to hold options
 #window.config(menu = menu) #configure the window with a menu bar
-def CreateMenu(window, cardManager):
+def CreateMenu(window, cardManager, displayManager):
 	
 	def NewGame():
 		print('New game!')
 		cardManager.NewCards()
 		GameLogic.cardTotal = 0
 
+	def Restart():
+		cardManager.NewCards()
+		GameLogic.cardTotal = 0
+		GameLogic.funds = 1000.00
+		displayManager.SetLabel(str(GameLogic.funds))
 
 	def Stats():
 		print('Viewing Stats!')
@@ -34,6 +39,7 @@ def CreateMenu(window, cardManager):
 	menu.add_cascade(label='File', menu = filemenu) #when clicked File will drop down
 	filemenu.add_command(label='New', command=NewGame)
 	filemenu.add_command(label='Stats',command=Stats)
+	filemenu.add_command(label='Restart', command=Restart)
 	filemenu.add_separator()
 	filemenu.add_command(label='Exit', command=Exit)
 

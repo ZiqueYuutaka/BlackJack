@@ -1,6 +1,6 @@
 from tkinter import *
 import MenuCreator
-import ButtonCreator
+import GameDisplayManager
 import CardManager
 import GameLogic
 
@@ -10,18 +10,18 @@ window.title('WELCOME TO BLACKJACK')
 
 cardManager = CardManager.createManager(window)
 
-ButtonCreator.create(window, cardManager)
+displayManager = GameDisplayManager.create(window, cardManager)
 
 #label = Label(window, text = 'Hello')
 
 #label.pack(padx = 60, pady = 50)
 
-#buttonCreator.CreateCards(window)
+#GameDisplayManager.CreateCards(window)
 
-menu = MenuCreator.CreateMenu(window, cardManager)
+menu = MenuCreator.CreateMenu(window, cardManager, displayManager)
 
-#ButtonCreator.HitButton(window, label)
-#buttonCreator.HitButton(window)
+#GameDisplayManager.HitButton(window, label)
+#GameDisplayManager.HitButton(window)
 
 #buttonCreator.StandButton(window)
 

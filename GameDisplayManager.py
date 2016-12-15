@@ -1,12 +1,13 @@
 from tkinter import *
 import GameLogic
 import CardManager
-class Creator:
+class DisplayManager:
 	def __init__(self, root, cardManager):
 		self.root = root
 #		self.cardManager = CardManager.createManager(root)
 		self.cardManager = cardManager
-		self.fundsLabel = Label(self.root, text = '$' + str(GameLogic.funds))
+		self.fundsLabel = Label(self.root)
+		self.SetLabel()
 #		self.StandButton()
 		self.HitButton()	
 
@@ -16,8 +17,8 @@ class Creator:
 			#use the IndexError Exception that is thrown
 			#if self.index == 5 do not deal new card and display error window
 			#else play scenario below
-			if GameLogic.cardTotal > 21:
-				GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease restart')
+			if GameLogic.cardTotal > 21 or GameLogic.funds <= 0:
+				GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease choose New from File menu')
 			else: 
 				print('Dealer deals new card')
 				suit = GameLogic.GetSuit()
@@ -44,18 +45,24 @@ class Creator:
 				
 				self.cardManager.SetNextCard(lblStr)
 				if GameLogic.isOver(GameLogic.cardTotal) == 'true':
-					GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease restart')
+					GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease choose New from File menu')
 					GameLogic.funds -= 50
-					self.fundsLabel.config(text = '$' + str(GameLogic.funds))
+					self.SetLabel()
 				elif GameLogic.cardTotal == 21:
 					GameLogic.box.showinfo('WIN!!!!!', 'You have WON the game!!!!')
 					GameLogic.funds += 100
-					self.fundsLabel.config(text = '$' + str(GameLogic.funds))
+					self.SetLabel()
 		btn = Button(self.root, text = 'HIT ME!', command = Hit)
 		btn.pack(side = BOTTOM, padx = 60, pady = 20)
 		self.fundsLabel.config(font=100)
 		self.fundsLabel.pack(side = BOTTOM, padx = 60, pady = 20)
 	#	return btn
+
+	def SetLabel(self):
+		if GameLogic.funds <= 0:
+			self.fundsLabel.config(text = '$0.00')
+		else:
+			self.fundsLabel.config(text = '$' + str(GameLogic.funds))
 
 #	def StandButton(self):
 #		def Stand():
@@ -65,4 +72,4 @@ class Creator:
 	#	return btn
 
 def create(root, cardManager):
-	Creator(root, cardManager)
+	return DisplayManager(root, cardManager)

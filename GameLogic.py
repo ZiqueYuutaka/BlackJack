@@ -1,6 +1,10 @@
 import random
 import tkinter.messagebox as box
 
+playerName = 0
+playerWins = 0
+playerLoses = 0
+
 cardTotal = 0
 funds = 1000.00
 isGameOver = 'false'
