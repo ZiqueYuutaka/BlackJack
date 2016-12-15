@@ -1,5 +1,6 @@
 from tkinter import *
 import ButtonCreator
+import GameLogic
 
 ####################TEST SECTION################
 #window = Tk()
@@ -10,11 +11,13 @@ import ButtonCreator
 
 #menu = Menu(window) #create a menu bar to hold options
 #window.config(menu = menu) #configure the window with a menu bar
-def CreateMenu(window):
+def CreateMenu(window, cardManager):
 	
 	def NewGame():
 		print('New game!')
-		ButtonCreator.cardManager.CreateCards()
+		cardManager.NewCards()
+		GameLogic.cardTotal = 0
+
 
 	def Stats():
 		print('Viewing Stats!')

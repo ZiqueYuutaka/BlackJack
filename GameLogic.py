@@ -2,6 +2,7 @@ import random
 import tkinter.messagebox as box
 
 cardTotal = 0
+funds = 1000.00
 isGameOver = 'false'
 
 def GetSuit():
@@ -41,7 +42,7 @@ def GetRankNum(rankStr):
 def CheckHand(card, cardList):
 
 	for ownedCard in cardList:
-		if card == ownedCard:
+		if card == ownedCard.cget('text'):
 			return 'match'
 
 def isOver(score):
