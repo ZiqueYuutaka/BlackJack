@@ -9,7 +9,7 @@ def HitButton(window, label):
 		rank = GameLogic.GetRank()
 		lblStr = rank + ' of ' + suit
 		print(lblStr)
-		label.config(text = lblStr)
+		label.config(text = lblStr)#Change text
 	btn = Button(window, text = 'HIT ME!', command = Hit)
 	btn.pack(side = LEFT, padx = 60, pady = 20)
 #	return btn
