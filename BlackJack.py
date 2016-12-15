@@ -1,20 +1,29 @@
 from tkinter import *
 import MenuCreator
-import ButtonCreator
+import GameDisplayManager
+import CardManager
+import GameLogic
 
 window = Tk()
 
 window.title('WELCOME TO BLACKJACK')
 
-label = Label(window, text = 'Hello')
+cardManager = CardManager.createManager(window)
 
-label.pack(padx = 60, pady = 50)
+displayManager = GameDisplayManager.create(window, cardManager)
 
-menu = MenuCreator.CreateMenu(window)
+#label = Label(window, text = 'Hello')
 
-ButtonCreator.HitButton(window, label)
+#label.pack(padx = 60, pady = 50)
 
-ButtonCreator.StandButton(window)
+#GameDisplayManager.CreateCards(window)
+
+menu = MenuCreator.CreateMenu(window, cardManager, displayManager)
+
+#GameDisplayManager.HitButton(window, label)
+#GameDisplayManager.HitButton(window)
+
+#buttonCreator.StandButton(window)
 
 window.config(menu = menu)
 
