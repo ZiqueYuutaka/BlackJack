@@ -1,9 +1,11 @@
 from tkinter import *
-import tkinter.messagebox as box
+import GameLogic
+
 class CardManager: 
 	def __init__(self, window):
 		self.window = window
 		self.cards = []
+		self.acePosition = []
 		self.cardIndex = 0
 		self.CreateCards()
 
@@ -11,14 +13,13 @@ class CardManager:
 		print(cardType)
 		try:
 			self.cards[self.cardIndex].config(text = cardType)
+			# if card type is Ace, create an Ace card and set in to cards
 			self.cardIndex += 1
 		except IndexError:
-			box.showinfo('Total cards', 'Dealt card limit reached')
-
-
+			GameLogic.box.showinfo('Total cards', 'Dealt card limit reached')
 
 	def CreateCards(self):
-		
+		self.cards.clear()
 		i = 0
 		while i < 5:
 			btn = Button(self.window, height=15, width=20)
@@ -31,6 +32,7 @@ class CardManager:
 
 	def GetCurrentCardIndex(self):
 		return self.cardIndex
+
 
 def createManager(window):
 	return CardManager(window)

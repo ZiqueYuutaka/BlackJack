@@ -4,12 +4,9 @@ import CardManager
 class Creator:
 	def __init__(self, root):
 		self.root = root
-#		self.cards = []
-#		self.cardIndex = 0
-#		self.CreateCards()
 		self.cardManager = CardManager.createManager(root)
-		self.StandButton()
-		self.HitButton()		
+#		self.StandButton()
+		self.HitButton()	
 
 	def HitButton(self):
 
@@ -17,44 +14,47 @@ class Creator:
 			#use the IndexError Exception that is thrown
 			#if self.index == 5 do not deal new card and display error window
 			#else play scenario below
-			print('Dealer deals new card')
-			suit = GameLogic.GetSuit()
-			rank = GameLogic.GetRank()
-			lblStr = rank + ' of ' + suit
-			#Check created card with cards in hand
-			#	if the card is in the hand, while no matches found get a new card
-			isMatch = GameLogic.CheckHand(lblStr, self.cardManager.GetCards())
-			while isMatch == 'match':
+			if GameLogic.cardTotal > 21:
+				GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease restart')
+			else: 
+				print('Dealer deals new card')
 				suit = GameLogic.GetSuit()
 				rank = GameLogic.GetRank()
 				lblStr = rank + ' of ' + suit
+				print(GameLogic.cardTotal)
+				#Check created card with cards in hand
+				#	if the card is in the hand, while no matches found get a new card
 				isMatch = GameLogic.CheckHand(lblStr, self.cardManager.GetCards())
+				while isMatch == 'match':
+					suit = GameLogic.GetSuit()
+					rank = GameLogic.GetRank()
+					lblStr = rank + ' of ' + suit
+					isMatch = GameLogic.CheckHand(lblStr, self.cardManager.GetCards())
 
-			#	else add the new card in to the hand
-			#print(lblStr)
-			#self.cards[self.cardIndex].config(text = lblStr)
-			#self.cardIndex += 1
-			#label.config(text = lblStr)
-			self.cardManager.SetNextCard(lblStr)
+				#	else add the new card in to the hand
+				if rank == 'Ace':
+					if rank + GameLogic.cardTotal < 21:
+						GameLogic.cardTotal += 11
+					else:
+						GameLogic.cardTotal += 1
+				else:
+					GameLogic.cardTotal += GameLogic.GetRankNum(rank)
+				
+				self.cardManager.SetNextCard(lblStr)
+				if GameLogic.isOver(GameLogic.cardTotal) == 'true':
+					GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease restart')
+				elif GameLogic.cardTotal == 21:
+					GameLogic.box.showinfo('WIN!!!!!', 'You have WON the game!!!!')
 		btn = Button(self.root, text = 'HIT ME!', command = Hit)
 		btn.pack(side = BOTTOM, padx = 60, pady = 20)
 	#	return btn
 
-	def StandButton(self):
-		def Stand():
-			print('Standing with current hand')
-		btn = Button(self.root, text = 'STAND!', command = Stand)
-		btn.pack(side = BOTTOM, padx = 60, pady = 20)
+#	def StandButton(self):
+#		def Stand():
+#			print('Standing with current hand')
+#		btn = Button(self.root, text = 'STAND!', command = Stand)
+#		btn.pack(side = BOTTOM, padx = 60, pady = 20)
 	#	return btn
-
-#	def CreateCards(self):
-#		
-#		i = 0
-#		while i < 5:
-#			btn = Button(self.root, height=15, width=20)
-#			btn.pack(side = LEFT, padx = 10, pady = 10)
-#			self.cards.append(btn)
-#			i+=1
 
 def create(root):
 	Creator(root)

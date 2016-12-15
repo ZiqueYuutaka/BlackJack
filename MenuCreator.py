@@ -1,5 +1,5 @@
 from tkinter import *
-
+import ButtonCreator
 
 ####################TEST SECTION################
 #window = Tk()
@@ -14,6 +14,7 @@ def CreateMenu(window):
 	
 	def NewGame():
 		print('New game!')
+		ButtonCreator.cardManager.CreateCards()
 
 	def Stats():
 		print('Viewing Stats!')

@@ -1,6 +1,8 @@
 import random
+import tkinter.messagebox as box
 
 cardTotal = 0
+isGameOver = 'false'
 
 def GetSuit():
 	suit = random.randint(1, 4)
@@ -26,9 +28,26 @@ def GetRank():
 	else:
 		return str(rank)
 
+def GetRankNum(rankStr):
+	if(rankStr == 'King'):
+		return 10
+	elif(rankStr == 'Queen'):
+		return 10
+	elif(rankStr == 'Jack'):
+		return 10
+	else:
+		return int(rankStr)
+
 def CheckHand(card, cardList):
 
 	for ownedCard in cardList:
 		if card == ownedCard:
 			return 'match'
+
+def isOver(score):
+	if score > 21:
+		return 'true'
+	else:
+		print('Not over')
+
 
