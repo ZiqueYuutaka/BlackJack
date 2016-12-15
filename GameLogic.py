@@ -1,5 +1,7 @@
 import random
 
+cardTotal = 0
+
 def GetSuit():
 	suit = random.randint(1, 4)
 	if(suit == 1):
