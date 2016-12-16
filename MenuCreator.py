@@ -12,26 +12,7 @@ import GameLogic
 
 #menu = Menu(window) #create a menu bar to hold options
 #window.config(menu = menu) #configure the window with a menu bar
-def CreateMenu(window, cardManager, displayManager):
-	
-	def NewGame():
-		print('New game!')
-		cardManager.NewCards()
-		GameLogic.cardTotal = 0
-
-	def Restart():
-		result = msgbox.askquestion('Restart','Are you sure you want to reset all stats?')
-		if result == 'yes':
-			cardManager.NewCards()
-			GameLogic.cardTotal = 0
-			GameLogic.playerWins = 0
-			GameLogic.playerLoses = 0
-			GameLogic.funds = 1000.00
-			displayManager.SetLabel()
-
-	def Stats():
-		print('Viewing Stats!')
-		
+def CreateMenu(window, cardManager, displayManager):		
 
 	def About():
 		print('About BlackJack')

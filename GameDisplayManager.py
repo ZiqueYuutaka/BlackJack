@@ -9,7 +9,8 @@ class DisplayManager:
 		self.fundsLabel = Label(self.root)
 		self.SetLabel()
 #		self.StandButton()
-		self.HitButton()	
+		self.HitButton()
+		self.NewGameButton()	
 
 	def HitButton(self):
 
@@ -45,7 +46,7 @@ class DisplayManager:
 				
 				self.cardManager.SetNextCard(lblStr)
 				if GameLogic.isOver(GameLogic.cardTotal) == 'true':
-					GameLogic.box.showinfo('Lost', 'You have lost the game.\nPlease choose New from File menu')
+					GameLogic.box.showinfo('Lost', 'You have lost the game.\nPress NEW ROUND to play again')
 					GameLogic.funds -= 50
 					self.SetLabel()
 				elif GameLogic.cardTotal == 21:
@@ -58,11 +59,21 @@ class DisplayManager:
 		self.fundsLabel.pack(side = BOTTOM, padx = 60, pady = 20)
 	#	return btn
 
+	def NewGameButton(self):
+		def NewGame():
+			print('New game!')
+			self.cardManager.NewCards()
+			GameLogic.cardTotal = 0
+		btn = Button(self.root, text = 'NEW ROUND', command = NewGame)
+		btn.pack(side = BOTTOM, padx = 60, pady = 20)
+
 	def SetLabel(self):
 		if GameLogic.funds <= 0:
 			self.fundsLabel.config(text = '$0.00')
 		else:
 			self.fundsLabel.config(text = '$' + str(GameLogic.funds))
+
+
 
 #	def StandButton(self):
 #		def Stand():
