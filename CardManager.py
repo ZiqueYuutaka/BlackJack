@@ -45,6 +45,23 @@ class CardManager:
 	def GetCurrentCardIndex(self):
 		return self.cardIndex
 
+	def SetFirstTwo(self):
+		i = 0
+		while i < 2:
+			suit = GameLogic.GetSuit()
+			rank = GameLogic.GetRank()
+			lblStr = rank + ' of ' + suit
+			#Check created card with cards in hand
+			#	if the card is in the hand, while no matches found get a new card
+			isMatch = GameLogic.CheckHand(lblStr, self.cards)
+			while isMatch == 'match':
+				suit = GameLogic.GetSuit()
+				rank = GameLogic.GetRank()
+				lblStr = rank + ' of ' + suit
+				isMatch = GameLogic.CheckHand(lblStr, self.cards)
+
+			self.SetNextCard(lblStr)
+
 
 def createManager(window):
 	return CardManager(window)

@@ -14,6 +14,7 @@ class BlackJackGame:
 		self.ConfigureButtons()
 		self.cardManager = ''
 		self.displayManager = ''
+		self.fundsLabel = ''
 
 	def PlayGame(self):
 		print('Play game')
@@ -47,7 +48,18 @@ class BlackJackGame:
 	def DisplayFunds(self):
 		fundsWindow = Tk()
 		fundsWindow.title('Your available funds')
-		label = Label(fundsWindow, text = GameLogic.funds)
+		self.fundsLabel = Label(fundsWindow)
+		self.SetLabel()
+
+	def SetLabel(self):
+		fundStr = 'You have:\n'
+		fontSize = 20
+		if GameLogic.funds <= 0:
+			self.fundsLabel.config(text = fundStr + '$0.00', font=fontSize)
+			self.fundsLabel.pack(padx = 60, pady = 50)
+		else:
+			self.fundsLabel.config(text = fundStr + '$' + str(GameLogic.funds), font=fontSize)
+			self.fundsLabel.pack(padx = 60, pady = 50)
 
 	def Restart(self):
 		result = msgbox.askquestion('Restart','Are you sure you want to reset all stats?')
@@ -60,7 +72,7 @@ class BlackJackGame:
 
 	def Exit(self):
 		print('ByeBye!')
-		result = msgbox.askquestion('Restart','Are you sure you want to reset all stats?')
+		result = msgbox.askquestion('Exit','Are you sure you want to Exit?')
 		if result == 'yes':
 			window.destroy()
 
@@ -72,22 +84,21 @@ class BlackJackGame:
 		self.btnQuit =	Button(self.window, text = 'Quit', command = self.Exit)
 
 	def ConfigureButtons(self):
-		self.btnGame.pack(padx=100, pady=10)
-		self.btnGame.config(width=50, height=2)
-		self.btnFunds.pack(padx=100, pady=10)
-		self.btnFunds.config(width=50, height=2)
-		self.btnReset.pack(padx=100, pady=10)
-		self.btnReset.config(width=50, height=2)
-		self.btnQuit.pack(padx=100, pady=10)
-		self.btnQuit.config(width=50, height=2)
+		padx = 100
+		pady = 10
+		width = 50
+		height = 2
+		self.btnGame.pack(padx=padx, pady=pady)
+		self.btnGame.config(width=width, height=height)
+		self.btnFunds.pack(padx=padx, pady=pady)
+		self.btnFunds.config(width=width, height=height)
+		self.btnReset.pack(padx=padx, pady=pady)
+		self.btnReset.config(width=width, height=height)
+		self.btnQuit.pack(padx=padx, pady=pady)
+		self.btnQuit.config(width=width, height=height)
 
 if __name__ == '__main__':
 	window = Tk()
 	BlackJackGame(window)
-#	window.withdraw()
-#	result = box.askquestion('Open', 'Open window?')
-#	if result == 'yes':
-#		window.deiconify()
-#	else:
-#		window.destroy()
+	window.config(menu = MenuCreator.CreateMenu(window))
 	window.mainloop()

@@ -6,7 +6,7 @@ playerWins = 0
 playerLoses = 0
 
 cardTotal = 0
-funds = 1000.00
+funds = 1000
 isGameOver = 'false'
 
 def GetSuit():
@@ -54,5 +54,3 @@ def isOver(score):
 		return 'true'
 	else:
 		print('Not over')
-
-
