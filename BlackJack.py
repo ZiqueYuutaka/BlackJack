@@ -21,29 +21,15 @@ class BlackJackGame:
 		
 		result = msgbox.askquestion('Play BlackJack', 'Are you ready to play BlackJack?')
 		if result == 'yes':
-#			self.window.withdraw()
-			gameWindow = Tk()
-			gameWindow.title('BLACKJACK')
+			if GameLogic.funds <= 0:
+				GameLogic.box.showinfo('No Funds', 'You have NO FUNDS.\nPlease hit restart')
+			else:
+				gameWindow = Tk()
+				gameWindow.title('BLACKJACK')
 
-			self.cardManager = CardManager.createManager(gameWindow)
+				self.cardManager = CardManager.createManager(gameWindow)
 
-			self.displayManager = GameDisplayManager.create(gameWindow, self.cardManager)
-
-			#label = Label(gameWindow, text = 'Hello')
-
-			#label.pack(padx = 60, pady = 50)
-
-			#GameDisplayManager.CreateCards(gameWindow)
-
-#			menu = MenuCreator.CreateMenu(gameWindow, cardManager, displayManager)
-
-			#GameDisplayManager.HitButton(gameWindow, label)
-			#GameDisplayManager.HitButton(gameWindow)
-
-			#buttonCreator.StandButton(gameWindow)
-
-#			gameWindow.config(menu = menu)
-#			gameWindow.mainloop()
+				self.displayManager = GameDisplayManager.create(gameWindow, self.cardManager)
 
 	def DisplayFunds(self):
 		fundsWindow = Tk()
@@ -64,11 +50,10 @@ class BlackJackGame:
 	def Restart(self):
 		result = msgbox.askquestion('Restart','Are you sure you want to reset all stats?')
 		if result == 'yes':
-			cardManager.NewCards()
 			GameLogic.cardTotal = 0
 			GameLogic.playerWins = 0
 			GameLogic.playerLoses = 0
-			GameLogic.funds = 1000.00
+			GameLogic.funds = 1000
 
 	def Exit(self):
 		print('ByeBye!')

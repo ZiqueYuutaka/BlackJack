@@ -34,7 +34,10 @@ NOTE
 The Ace is switches between one and eleven.
 If you get an Ace and if your score would 
 surpass 21, that Ace will be a one. Otherwise
-it will be an eleven."""
+it will be an eleven.
+You are given $1000 to start the game.
+You earn $100 for each win and lose
+$50 for each loss."""
 		label = Label(aboutWindow, text = aboutStr)
 		label.pack(side=LEFT)
 

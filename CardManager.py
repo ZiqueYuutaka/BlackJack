@@ -12,13 +12,7 @@ class CardManager:
 	def SetNextCard(self, cardType):
 		print(cardType)
 		try:
-			#if it's an Ace card
-			# create an ace card button
-			# set the ace card button to the empty slot
-
-			#else just add the card to the cards
 			self.cards[self.cardIndex].config(text = cardType, bg ='white')
-			# if card type is Ace, create an Ace card and set in to cards
 			self.cardIndex += 1
 		except IndexError:
 			GameLogic.box.showinfo('Total cards', 'Dealt card limit reached')
@@ -51,8 +45,6 @@ class CardManager:
 			suit = GameLogic.GetSuit()
 			rank = GameLogic.GetRank()
 			lblStr = rank + ' of ' + suit
-			#Check created card with cards in hand
-			#	if the card is in the hand, while no matches found get a new card
 			isMatch = GameLogic.CheckHand(lblStr, self.cards)
 			while isMatch == 'match':
 				suit = GameLogic.GetSuit()
@@ -61,6 +53,14 @@ class CardManager:
 				isMatch = GameLogic.CheckHand(lblStr, self.cards)
 
 			self.SetNextCard(lblStr)
+			if rank == 'Ace':
+				if 11 + GameLogic.cardTotal > 21:
+					GameLogic.cardTotal += 1
+				else:
+					GameLogic.cardTotal += 11
+			else:
+				GameLogic.cardTotal += GameLogic.GetRankNum(rank)
+			i+=1
 
 
 def createManager(window):

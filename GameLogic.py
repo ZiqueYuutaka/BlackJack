@@ -6,7 +6,7 @@ playerWins = 0
 playerLoses = 0
 
 cardTotal = 0
-funds = 1000
+funds = 0
 isGameOver = 'false'
 
 def GetSuit():
