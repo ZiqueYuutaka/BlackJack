@@ -7,6 +7,7 @@ import GameLogic
 import tkinter.messagebox as msgbox
 #This is my change here that I want to push to ZiqueYuutaka
 #This is my change from ZiqueYuutaka BlackJack
+#This is a test of the bat file on iwoodferren machine
 class BlackJackGame:
 	def __init__(self, window):
 		self.window = window
