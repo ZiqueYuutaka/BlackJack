@@ -6,6 +6,7 @@ import GameLogic
 
 import tkinter.messagebox as msgbox
 #This is my change here that I want to push to ZiqueYuutaka
+#This is my change from ZiqueYuutaka BlackJack
 class BlackJackGame:
 	def __init__(self, window):
 		self.window = window
